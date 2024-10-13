@@ -1,5 +1,5 @@
 # tit-for-tat-simulation
 
-This is an very simple agent based simulation written in go that should show the "benefits" (expressed in reached points) of the behaviors: always cooperate, always defect or [tit-for-tat](https://en.wikipedia.org/wiki/Tit_for_tat). 
+This is a agent-based simulation written in Go that aims to demonstrate the "benefits" (measured in points reached) of the following behaviors: always cooperating, always defecting, or [tit-for-tat](https://en.wikipedia.org/wiki/Tit_for_tat).
 
-The Simulation runs in a 640x480 pixel simulation window and is ugly. It was a little fun project for mysqlf while learning simulations in go.
+The simulation runs in a 640x480 pixel window and looks quite basic. It was a small fun project I created for myself while learning simulations in Go.
