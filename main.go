@@ -7,6 +7,13 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
+const (
+	screenWidth  = 640
+	screenHeight = 480
+	gridWidth    = 32
+	gridHeight   = 24
+)
+
 func main() {
 	width, height := 32, 24
 	numAgents := 30
@@ -17,9 +24,10 @@ func main() {
 		Env:       env,
 		StepDelay: stepDelay,
 		lastStep:  time.Now(),
+		gridImage: createGridImage(),
 	}
 
-	ebiten.SetWindowSize(640, 480)
+	ebiten.SetWindowSize(screenWidth, screenHeight)
 	ebiten.SetWindowTitle("Simulation of cooperation")
 
 	if err := ebiten.RunGame(game); err != nil {
