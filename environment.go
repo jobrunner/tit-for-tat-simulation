@@ -2,6 +2,7 @@ package main
 
 import (
 	"math/rand"
+	"time"
 
 	"github.com/google/uuid"
 )
@@ -11,6 +12,7 @@ type Environment struct {
 	Width, Height int
 	Step          int
 	Agents        []*Agent
+	Config        *Config
 }
 
 type TotalState struct {
@@ -19,15 +21,21 @@ type TotalState struct {
 	Step        int            `json:"step"`
 	Points      map[string]int `json:"points"`
 	TotalPoints int            `json:"points_total"`
+	Timestamp   int64          `json:"ts"`
 }
 
-func NewEnvironment(width, height, numAgents int) *Environment {
+func NewEnvironment(cfg *Config) *Environment {
+	width := cfg.GridWidth
+	height := cfg.GridHeight
+	numAgents := cfg.NumAgents
+
 	env := &Environment{
 		Simulation: uuid.New().String(),
 		Width:      width,
 		Height:     height,
 		Agents:     make([]*Agent, numAgents),
 		Step:       0,
+		Config:     cfg,
 	}
 
 	for i := 0; i < numAgents; i++ {
@@ -61,6 +69,7 @@ func (env *Environment) TotalState() (TotalState, error) {
 		TotalPoints: totalPoints,
 		Points:      points,
 		Strategies:  strategies,
+		Timestamp:   time.Now().UnixNano(),
 	}
 
 	return entry, nil
